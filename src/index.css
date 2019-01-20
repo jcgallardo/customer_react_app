@@ -6,9 +6,26 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.customer-list-item .field{
+  width: 160px;
+  margin: 1px;
+  padding: 4px;
+  background: #eee;
+  display: inline-block;
+}
+
+.appFrame{
+  max-width: 60vw;
+  margin:20px auto;
+  padding: 20px;
+  background: #DDD;
+  box-shadow: 1px 1px 2px 1px  #666;
 }
