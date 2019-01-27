@@ -12,6 +12,10 @@ class App extends Component {
   
   renderCustomerNewContainer = () => <h1>Customer New Container</h1>
 
+  renderCustomerEditContainer = () => <h1>Customer Edit Container</h1>
+
+  renderCustomerDelContainer = () => <h1>Customer Del Container</h1>
+
   render() {
     return (
       <Router>
@@ -19,8 +23,10 @@ class App extends Component {
           <Route exact path="/" component={ HomeContainer } />
           <Route exact path="/customers" component={ CustomersContainer } />
           <Switch>
-            <Route path="/customers/new" component={ this.renderCustomerNewContainer } />
-            <Route path="/customers/:dni" component={ this.renderCustomerContainer } /> 
+            <Route path="/customers/new" render={ this.renderCustomerNewContainer } />
+            <Route path="/customers/:dni/edit" render={ this.renderCustomerEditContainer } /> 
+            <Route path="/customers/:dni/del" render={ this.renderCustomerDelContainer } /> 
+            <Route path="/customers/:dni" render={ this.renderCustomerContainer } /> 
           </Switch>
         </div>
       </Router>
