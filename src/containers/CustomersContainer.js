@@ -6,6 +6,8 @@ import CustomersList from '../components/CustomersList';
 import CustomersActions from '../components/CustomersActions';
 import { connect } from 'react-redux';
 import { fetchCustomers } from '../actions/fetchCustomers'
+import { getCustomers } from './../selectors/customers.js'
+
 const mapDispatchToProps = { fetchCustomers }
 
 class CustomersContainer extends Component {
@@ -50,4 +52,8 @@ CustomersContainer.defaultProps = {
     customers: []
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(CustomersContainer));
+const mapStateToProps = state => ({
+    customers: getCustomers(state)
+})
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CustomersContainer));
