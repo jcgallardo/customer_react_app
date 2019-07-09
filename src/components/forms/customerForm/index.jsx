@@ -1,7 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 import { reduxForm, Field } from 'redux-form';
 
 import { setPropsAsInitial } from '../../../helpers/setPropsAsInitial';
+import CustomersActions from '../../CustomersActions'
 
 import './styles.scss';
 
@@ -17,39 +19,64 @@ const isNumber = value => (
     isNaN(Number(value)) && "El campo debe ser un número"
 )
 
-const isRequired = value => (
-    !value && "Este campo es requerido"
-)
+const validate = values => {
+    const error = {};
 
-const CustomerForm = () => {
+    if(!values.name){
+        error.name = "El campo NOMBRE es requerido"
+    }
+
+    if(!values.dni){
+        error.dni = "El campo DNI es requerido"
+    }
+
+    if(!values.age){
+        error.age = "El campo EDAD es requerido"
+    }
+
+    return error;
+} 
+
+const CustomerForm = ({id, name, dni, age, handleSubmit, submitting, onBack }) => {
     return (
-        <form action="" className={ "customerForm" }>
+        <form onSubmit={ handleSubmit } className={ "customerForm" }>
             <Field 
                 name="name" 
                 component={ MyField } 
                 type="text"
-                validate={ isRequired }
                 label="NOMBRE"
             ></Field>
             <Field 
                 name="dni" 
                 component={ MyField } 
                 type="text"
-                validate={ isRequired }
                 label="DNI"
             ></Field>
             <Field 
                 name="age" 
                 component={ MyField } 
                 type="number"
-                validate={ [isRequired, isNumber] }
+                validate={ isNumber }
                 label="EDAD"
             ></Field>
+            <CustomersActions>
+                <button type="submit" disabled={ submitting }>Aceptar</button>
+                <button onClick={ onBack }>Cancelar</button>
+            </CustomersActions>
         </form>
     )
 }
 
-CustomerForm.propTypes = {}
+CustomerForm.propTypes = {
+    id: PropTypes.string,
+    name: PropTypes.string,
+    dni: PropTypes.string,
+    age: PropTypes.number,
+    onBack: PropTypes.func
+}
 
-const CustomerForms = reduxForm({ form: 'CustomerForm' })(CustomerForm);
+const CustomerForms = reduxForm({ 
+    form: 'CustomerForm',
+    validate
+})(CustomerForm);
 export default setPropsAsInitial(CustomerForms); 

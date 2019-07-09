@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import AppFrame from '../components/AppFrame';
 import { getCustomerByDni } from '../selectors/customers'
@@ -8,16 +9,20 @@ import CustomerEdit from './../components/CustomerEdit'
 import CustomerData from './../components/CustomerData'
 import { fetchCustomers } from '../actions/fetchCustomers'
 
-const mapDispatchToProps = { fetchCustomers }
-
 class CustomerContainer extends Component {
 
     componentDidMount(){
-        this.props.fetchCustomers()
+        if(!this.props.customer){
+            this.props.fetchCustomers()
+        }
     }
 
-    onCustomerUpdate = (customer) => {
-        alert(customer.name + " " + customer.age)
+    onCustomerUpdate = values => {
+        console.log(values);
+    }
+
+    onBack = () => {
+        this.props.history.goBack()
     }
 
     renderBody = () => {
@@ -26,7 +31,7 @@ class CustomerContainer extends Component {
             children={
                 ({ match }) => { 
                     const CustomerControl = (match) ? CustomerEdit : CustomerData
-                    return <CustomerControl { ...this.props.customer } onSubmit={ this.onCustomerUpdate } />
+                    return <CustomerControl { ...this.props.customer } onSubmit={ this.onCustomerUpdate } onBack={ this.onBack } />
                 }
             }
         />
@@ -55,4 +60,6 @@ const mapStateToProps = (state, props) => ({
     customer: getCustomerByDni(state, props)
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(CustomerContainer)
+export default withRouter (connect(mapStateToProps, {
+    fetchCustomers
+})(CustomerContainer))
