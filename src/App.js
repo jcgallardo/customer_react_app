@@ -8,8 +8,6 @@ import CustomersContainer from './containers/CustomersContainer';
 import CustomerContainer from './containers/CustomerContainer';
 
 class App extends Component {
-
-  renderCustomerContainer = () => <h1>Customer Container</h1>
   
   renderCustomerNewContainer = () => <h1>Customer New Container</h1>
 

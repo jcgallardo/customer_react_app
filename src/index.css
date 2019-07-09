@@ -23,9 +23,21 @@ code {
 }
 
 .appFrame{
-  max-width: 60vw;
+  width: 90vw;
   margin:20px auto;
-  padding: 20px;
-  background: #DDD;
+  padding: 50px 10px;
+  background: #FFF;
   box-shadow: 1px 1px 2px 1px  #666;
+}
+
+button{
+  padding: 5px 10px;
+  margin-top: 15px;
+}
+
+@media(min-width: 768px){
+  .appFrame{
+    width: 75vw;
+    max-width: 800px;
+  }
 }
