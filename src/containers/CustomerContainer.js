@@ -8,6 +8,7 @@ import { Route } from 'react-router-dom'
 import CustomerEdit from './../components/CustomerEdit'
 import CustomerData from './../components/CustomerData'
 import { fetchCustomers } from '../actions/fetchCustomers'
+import { updateCustomer } from '../actions/updateCustomer'
 
 class CustomerContainer extends Component {
 
@@ -19,9 +20,15 @@ class CustomerContainer extends Component {
 
     onCustomerUpdate = values => {
         console.log(values);
+        const { id } = values
+        return this.props.updateCustomer(id, values)
     }
 
     onBack = () => {
+        this.props.history.goBack()
+    }
+
+    onSubmitSuccess = () => {
         this.props.history.goBack()
     }
 
@@ -31,7 +38,11 @@ class CustomerContainer extends Component {
             children={
                 ({ match }) => { 
                     const CustomerControl = (match) ? CustomerEdit : CustomerData
-                    return <CustomerControl { ...this.props.customer } onSubmit={ this.onCustomerUpdate } onBack={ this.onBack } />
+                    return <CustomerControl { ...this.props.customer } 
+                        onSubmit={ this.onCustomerUpdate }
+                        onSubmitSuccess={ this.onSubmitSuccess }
+                        onBack={ this.onBack }
+                    />
                 }
             }
         />
@@ -54,6 +65,7 @@ CustomerContainer.propTypes = {
     dni: PropTypes.string.isRequired,
     customer: PropTypes.object,
     fetchCustomers: PropTypes.func.isRequired,
+    updateCustomer: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = (state, props) => ({
@@ -61,5 +73,6 @@ const mapStateToProps = (state, props) => ({
 })
 
 export default withRouter (connect(mapStateToProps, {
-    fetchCustomers
+    fetchCustomers,
+    updateCustomer
 })(CustomerContainer))

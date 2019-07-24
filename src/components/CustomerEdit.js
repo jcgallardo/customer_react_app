@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import CustomerForm from './forms/customerForm'
 
-const CustomerEdit = ({ id, name, dni, age, onSubmit, onBack }) => {
+const CustomerEdit = ({ id, name, dni, age, onSubmit, onSubmitSuccess, onBack }) => {
     return (
         <div>
             <h2>Edicion del cliente</h2>
@@ -15,6 +15,7 @@ const CustomerEdit = ({ id, name, dni, age, onSubmit, onBack }) => {
                 dni={ dni }
                 age={ age }
                 onSubmit={ onSubmit }
+                onSubmitSuccess={ onSubmitSuccess }
                 onBack={ onBack }
             />
         </div>
