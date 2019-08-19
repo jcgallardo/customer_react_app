@@ -12,10 +12,11 @@ class HomeContainer extends Component {
         return (
             <div>
                 <AppFrame
-                    header='Home'
+                    header='APP DE GESTIÓN DE USUARIOS'
                     body={
                         <div>
-                            Esta es la pantalla inicial
+                            <h2>{ "Aplicación React para gestión de usuarios" }</h2>
+                            <img class="AppImage" alt={ 'react icon'} src={ 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/React.svg/1200px-React.svg.png' } />
                             <CustomersActions>
                                 <button onClick={ this.handleOnClick }>Listado de clientes</button>
                             </CustomersActions>

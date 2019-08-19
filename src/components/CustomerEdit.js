@@ -8,7 +8,6 @@ const CustomerEdit = ({ id, name, dni, age, onSubmit, onSubmitSuccess, onBack })
     return (
         <div>
             <h2>Edicion del cliente</h2>
-            <h3>Nombre: { name } / DNI: { dni } / Edad: { age } </h3>
             <CustomerForm
                 id={ id }
                 name={ name }

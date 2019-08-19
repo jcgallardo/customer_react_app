@@ -1,0 +1,31 @@
+.customerList{
+
+    .customer-list-item{
+        display: flex;
+        border-bottom: 1px solid rgba(250, 128, 114, 0.46);
+        padding: 15px 25px;
+
+        .field{
+            align-self: center;
+        }
+
+        .actions{
+            justify-content: flex-end;
+            display: flex;
+            flex-grow: 1;
+
+            button{
+                padding: 9px 10px;
+
+                @media(min-width: 768px){
+                    padding: 15px 20px;
+                }
+            }
+
+            .delete button{
+                background-color: salmon;
+                margin-left: 10px;
+            }
+        }
+    }
+}
