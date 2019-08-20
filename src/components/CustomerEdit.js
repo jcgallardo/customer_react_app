@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 
 import CustomerForm from './forms/customerForm'
+import { accessControl } from '../helpers/accessControl';
+import { CUSTOMER_EDIT } from '../constants/permissions';
 
 const CustomerEdit = ({ id, name, dni, age, onSubmit, onSubmitSuccess, onBack }) => {
     return (
@@ -30,4 +32,4 @@ CustomerEdit.propTypes = {
     onBack: PropTypes.func
 };
 
-export default CustomerEdit;
+export default accessControl([CUSTOMER_EDIT])(CustomerEdit);

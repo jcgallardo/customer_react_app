@@ -4,4 +4,4 @@ You will also see any lint errors in the console.
 ### `npm start`
 
 The json server will run on port 3001
-### `json-server --watch db.json --port=3001
+### `json-server --watch db.json --port=3001`
